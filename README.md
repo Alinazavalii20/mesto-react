@@ -12,7 +12,7 @@
 
 **Используются в создании проекта:** 
 
-  HTML
-  CSS
-  JavaScript
-  React 
+  - HTML
+  - CSS
+  - JavaScript
+  - React 
