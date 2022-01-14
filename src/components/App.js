@@ -10,7 +10,7 @@ function App() {
   const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = React.useState(false);
   const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = React.useState(false);
   const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = React.useState(false);
-  const [isdeleteCard, setDeieteCard] = React.useState(false);
+  const [isDeleteCard, setDeleteCard] = React.useState(false);
   const [selectedCard, setSelectCard] = React.useState({ open: false, dataCard: {} });
 
   React.useEffect(() => {
@@ -23,7 +23,7 @@ function App() {
     return () => {
       window.removeEventListener('keydown', closePopupEsp)
     }
-  })
+  }, [])
 
   function handleProfilePopup() {
     setIsEditProfilePopupOpen(true)
@@ -38,14 +38,14 @@ function App() {
   }
 
   function handleDeletePopup() {
-    setDeieteCard(true);
+    setDeleteCard(true);
   }
 
   const closeAllPopups = () => {
     setIsEditProfilePopupOpen(false)
     setIsAddPlacePopupOpen(false)
     setIsEditAvatarPopupOpen(false)
-    setDeieteCard(false)
+    setDeleteCard(false)
     setSelectCard({ open: false, dataCard: {} });
   }
 
@@ -88,7 +88,7 @@ function App() {
         <span id="url-card-error" className="popup__input-error link-input-error" />
       </PopupWithForm>
 
-      <PopupWithForm name='delete' title='Вы уверены?' nameForm='form-delete' isOpen={isdeleteCard} onClose={closeAllPopups} buttonText="Да" />
+      <PopupWithForm name='delete' title='Вы уверены?' nameForm='form-delete' isOpen={isDeleteCard} onClose={closeAllPopups} buttonText="Да" />
 
       <ImagePopup data={selectedCard} onClose={closeAllPopups} />
     </div>

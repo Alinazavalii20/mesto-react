@@ -5,16 +5,16 @@ import Card from './Card';
 function Main(props) {
 
     const [profileName, setProfileName] = React.useState('');
-    const [profileAbout, setprofileAbout] = React.useState('');
-    const [profileAvatar, setprofileAvatar] = React.useState('')
+    const [profileAbout, setProfileAbout] = React.useState('');
+    const [profileAvatar, setProfileAvatar] = React.useState('')
     const [cards, setCards] = React.useState([])
 
     React.useEffect(() => {
         api.getUserInfo()
             .then(res => {
                 setProfileName(res.name)
-                setprofileAbout(res.about)
-                setprofileAvatar(res.avatar)
+                setProfileAbout(res.about)
+                setProfileAvatar(res.avatar)
             })
             .catch((err) => {
                 console.log(`Ошибка получения данных: ${err}`)
