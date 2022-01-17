@@ -32,6 +32,9 @@ function App() {
       .catch((err) => console.log("ошибка получения данных: " + err))
   }, []);
 
+
+
+
   useEffect(() => {
     function closePopupEsp(evt) {
       if (evt.key === 'Escape') {
@@ -102,7 +105,7 @@ function App() {
   function handleCardDelete(data) {
     api.deleteCard(data._id)
       .then(setCards((cards) => cards.filter((c) => c._id !== data._id && c),
-      closeAllPopups()))
+        closeAllPopups()))
       .catch((err) => console.log(err))
   }
 
@@ -152,10 +155,10 @@ function App() {
           handleAddCard={handleAddCard}></AddPlacePopup>
 
         <PopupWithSubmit
-        isOpen={isDeleteCard}
-        onClose={closeAllPopups}
-        handleDeleteClick={handleCardDelete}
-        data={cards}></PopupWithSubmit>
+          isOpen={isDeleteCard}
+          onClose={closeAllPopups}
+          handleDeleteClick={handleCardDelete}
+          data={cards}></PopupWithSubmit>
 
         <ImagePopup data={selectedCard} onClose={closeAllPopups} />
       </div>
