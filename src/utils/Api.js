@@ -8,6 +8,10 @@ export default class Api {
         this._headers = headers;
     }
 
+    getAllData() {
+      return Promise.all([this.getUserInfo(), this.getAllCards()]);
+    }
+
     //получение карточек
     getAllCards(){
         return fetch(`${this._url}/cards`,{

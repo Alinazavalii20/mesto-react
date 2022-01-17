@@ -1,54 +1,36 @@
 import React from 'react';
-import { api } from '../utils/Api';
 import Card from './Card';
+import CurrentUserContext from '../contexts/CurrentUserContext';
 
 function Main(props) {
 
-    const [profileName, setProfileName] = React.useState('');
-    const [profileAbout, setProfileAbout] = React.useState('');
-    const [profileAvatar, setProfileAvatar] = React.useState('')
-    const [cards, setCards] = React.useState([])
-
-    React.useEffect(() => {
-        api.getUserInfo()
-            .then(res => {
-                setProfileName(res.name)
-                setProfileAbout(res.about)
-                setProfileAvatar(res.avatar)
-            })
-            .catch((err) => {
-                console.log(`Ошибка получения данных: ${err}`)
-            })
-    }, [])
-
-    React.useEffect(() => {
-        api.getAllCards()
-            .then(res => {
-                setCards(res)
-            })
-            .catch((err) => {
-                console.log(`Ошибка получения данных: ${err}`)
-            })
-    }, [])
+    const currentUser = React.useContext(CurrentUserContext);
 
     return (
         <main className="content">
             <section className="profile">
                 <div className="profile__avatar-container">
-                    <img src={profileAvatar} alt="Аватар" className="profile__avatar" />
+                    <img src={currentUser.avatar} alt="Аватар" className="profile__avatar" />
                     <div className="profile__avatar-overlay" onClick={props.handleEditAvatarClick}></div>
                 </div>
                 <div className="profile__intro">
-                    <h1 className="profile__name">{profileName}</h1>
-                    <p className="profile__subtitle">{profileAbout}</p>
+                    <h1 className="profile__name">{currentUser.name}</h1>
+                    <p className="profile__subtitle">{currentUser.about}</p>
                     <button type="button" className="button profile__button-edit" onClick={props.handleEditProfileClick}></button>
                 </div>
                 <button className="button profile__button-plus" onClick={props.handleAddPlaceClick} type="button"></button>
             </section>
 
             <section className="elements">
-                {cards.map((res, _id) => (
-                    <Card key={res._id} data={res} handlePopupImage={props.handlePopupImage} handleCardDelete={props.handleCardDelete}></Card>
+                {props.cards.map((data, _id) => (
+                    <Card
+                        key={_id}
+                        data={data}
+                        handlePopupImage={props.handlePopupImage}
+                        onCardLike={props.onCardLike}
+                        onCardDelete={props.onCardDelete}
+                        handlePopupWithSubmit={props.handlePopupWithSubmit}
+                        onAddPlace={props.onAddPlace}></Card>
                 ))}
             </section>
         </main>
