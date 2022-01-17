@@ -32,9 +32,6 @@ function App() {
       .catch((err) => console.log("ошибка получения данных: " + err))
   }, []);
 
-
-
-
   useEffect(() => {
     function closePopupEsp(evt) {
       if (evt.key === 'Escape') {
