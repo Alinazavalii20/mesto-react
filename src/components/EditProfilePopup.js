@@ -8,7 +8,7 @@ function EditProfilePopup(props) {
     React.useEffect(() => {
         setName(currentUser.name);
         setDescription(currentUser.about);
-    }, [currentUser]);
+    }, [currentUser, props.isOpened]);
 
     const [name, setName] = React.useState('');
     const [description, setDescription] = React.useState('');
@@ -41,9 +41,9 @@ function EditProfilePopup(props) {
 
             <input id="username-input" className="popup__input 
             popup__input_type_username" type="text" name="name"
-                minLength={2} maxLength={40} placeholder="Ваше имя" required />
-            <span id="name-error" className="popup__input-error username-input-error"
-            onChange={handleNameChange} value={name ? name : ''} />
+                minLength={2} maxLength={40} placeholder="Ваше имя" required 
+                onChange={handleNameChange} value={name ? name : ''} />
+            <span id="name-error" className="popup__input-error username-input-error" />
 
             <input id="userjob-input" className="popup__input popup__input_type_userjob"
                 type="text" name="about" minLength={2} maxLength={200}

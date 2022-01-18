@@ -20,6 +20,11 @@ function AddPlacePopup(props) {
             link: linkCard})
     }
 
+    React.useEffect(() => {
+        setName('');
+        setLink('');
+    }, [props.isOpen]);
+
     return (
         <PopupWithForm
             name='card'

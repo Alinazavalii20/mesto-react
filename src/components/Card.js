@@ -27,7 +27,7 @@ function Card(props) {
 
     function handleSubmitPopup() {
         props.handlePopupWithSubmit();
-      }
+    }
 
     return (
         <div className="element">
